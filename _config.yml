@@ -13,18 +13,20 @@ defaults:
     scope:
       path: "" # empty string for all files
     values:
-      title: 每天进步一点点
+      title: leadhxyh
 
 description: Stylish Jekyll Theme
 author:
   name: leadhxyh
   email: liaowei5206@163.com
-  github: dbtek
-  bio: Your stylish, minimalist theme!
-  email_md5: 726351295ec82e145928582f595aa3aa
+  github: leadhxyh
+  bio: 品味生活，完善人性。<br>存在就是机会，思考才能提高。<br>人需要不断打碎自己，更应该重新组装自己。<br>
+  ＃email_md5: 726351295ec82e145928582f595aa3aa
 
 rss_path: feed.xml
 categories_path: categories.html
 tags_path: tags.html
 
 BASE_PATH:
+title: leadhxyh #sidebar title
+kz_full_content_index: false #文章列表是否显示文章的全部内容
