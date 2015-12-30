@@ -24,22 +24,49 @@ tagline:
   </h2>
 
   <div>
-    {% if post.fullview %}
-    {{ post.content }}
+    {% if site.kz_full_content_index %}
+        {{ post.content }}
     {% else %}
-    {% if post.shortinfo %}
-    {{ post.shortinfo }}
-    {% elsif post.description %}
-    {{ post.description }}
-    {% else %}
-    {{ post.excerpt }}
-    {% endif %}
+        {% if post.shortinfo %}
+            {{ post.shortinfo }}
+        {% elsif post.description %}
+            <div class="summary">{{ post.description }}</div>
+        {% else %}
+            <div class="summary">{{ post.excerpt | strip_html | strip_newlines | truncate:500 }}</div>
+            <!--excerpt:摘要; strip_html:去除html标签; strip_newlines:去除换行符;  truncate:摘要长度-->
+        {% endif %}
     {% endif %}
   </div>
 
+<div class="post-list_meta">
+    {% unless post.categories == empty %}
+    <ul class="tag_box list-unstyled list-inline">
+      <li><i class="fa fa-folder-open"></i></li>
+      {% assign categories_list = post.categories %}
+      {% if categories_list.first[0] == null %}
+      {% for category in categories_list %} 
+        <li><a href="{{ site.BASE_PATH }}/{{ site.categories_path }}#{{ category }}-ref">
+          {{ category | join: "/" }}
+          {% unless forloop.last %},{% endunless %}
+        </a></li>
+      {% endfor %}
+      {% else %}
+      {% for category in categories_list %} 
+        <li><a href="{{ site.BASE_PATH }}/{{ site.categories_path }}#{{ category[0] }}-ref">
+          {{ category[0] | join: "/" }} 
+        </a></li>
+      {% endfor %}
+      {% endif %}
+        <li><a class="btn-border-small" href="{{ site.BASE_PATH }}{{ post.url }}">阅读全文</a></li>
+    </ul>
+    {% endunless %}
+  </div>
+  {%if forloop.index < forloop.length %}
+    <hr class="post-list_divider">
+  {% endif %}
 </article>
 {% endfor %}
-<hr/>
+<hr style="height:2px;"/>
 
 <ul class="pager"> 
 
